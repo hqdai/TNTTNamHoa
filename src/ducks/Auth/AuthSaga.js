@@ -3,11 +3,11 @@ import AuthTypes from './AuthTypes';
 import APIRequest from '../../services/APIRequest';
 
 function* loginRequest(action) {
-  try {
-    const result = yield call(APIRequest.test);
-  } catch (err) {
-
-  }
+  // try {
+  //   const result = yield call(APIRequest.test);
+  // } catch (err) {
+  console.log('SAGA CALL');
+  // }
 }
 
 const AuthSaga = [

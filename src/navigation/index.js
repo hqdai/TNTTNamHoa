@@ -4,11 +4,11 @@ import RegisterScreens from './RegisterScreens';
 import configureStore from '../AppStore';
 
 
-const TNTTNamHoaInit = () => {
-  const store = configureStore();
+export default function TNTTNamHoaInit() {
+  const { store } = configureStore();
   RegisterScreens(store);
-  Navigation.events().registerAppLaunchedListener(async () => {
-    await Navigation.setRoot({
+  Navigation.events().registerAppLaunchedListener(() => {
+    Navigation.setRoot({
       root: {
         component: {
           name: AUTH_LOGIN,
@@ -16,6 +16,4 @@ const TNTTNamHoaInit = () => {
       },
     });
   });
-};
-
-export default TNTTNamHoaInit;
+}

@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import PropTypes from 'prop-types';
 import {
   FormLabel,
   FormInput,
-  FormValidationMessage,
   Button,
-  Divide,
 } from 'react-native-elements';
+import { AuthActions } from '../../../ducks/Auth';
+
 
 import Header from './Components/Header';
 import styles from './styles';
 
 class Login extends Component {
+  static propTypes = {
+    loginUser: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +37,7 @@ class Login extends Component {
   }
 
   onLoginUser = () => {
-    
+    this.props.loginUser(this.state.ID, this.state.Password);
   }
 
   render() {
@@ -76,4 +80,8 @@ const mapStateToProps = state => ({
   loading: state.auth.logging,
 });
 
-export default connect(mapStateToProps, null, null, { withRef: true })(Login);
+const mapDispatchToProps = dispatch => ({
+  loginUser: (ID, password) => dispatch(AuthActions.loginUser(ID, password)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { withRef: true })(Login);

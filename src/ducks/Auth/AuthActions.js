@@ -1,8 +1,12 @@
-import { LOGIN_REQUESTED } from './AuthTypes';
+import AuthType from './AuthTypes';
 
-const loginUser = ({ ID, password }) => ({
-  type: LOGIN_REQUESTED,
-  payload: { ID, password },
-});
+const AuthActions = {
+  loginUser(ID, password) {
+    return {
+      type: AuthType.LOGIN_REQUESTED,
+      payload: { ID, password },
+    };
+  },
+};
 
-export default loginUser;
+export default AuthActions;
